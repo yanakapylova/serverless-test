@@ -1,17 +1,15 @@
 const mysql = require("mysql2/promise");
-exports.hello = async (event) => {
-  // Get the client
 
-  // Create the connection to database
-  const connection = await mysql.createConnection({
-    host: "localhost",
-    database: "mydatabase",
-    user: "yana",
-    password: "qwerty",
-  });
+const dbConfig = {
+  host: "localhost",
+  database: "mydatabase",
+  user: "yana",
+  password: "qwerty",
+};
 
-  // A simple SELECT query''
-  let users;
+exports.createTable = async (event) => {
+  const connection = await mysql.createConnection(dbConfig);
+
   try {
     await connection.query(`DROP TABLE IF EXISTS Employees;`);
     await connection.query(
@@ -21,24 +19,51 @@ exports.hello = async (event) => {
       `INSERT INTO Employees (FirstName, LastName, Position)
       VALUES ('John', 'Doe', 'Software Engineer'), ('Jane', 'Smith', 'Product Manager');`
     );
-    const [results, fields] = await connection.query(
-      `SELECT * FROM Employees;`
-    );
 
-    users = results;
-    // console.log(results); // results contains rows returned by server
-    // console.log(fields); // fields contains extra meta data about results, if available
+    console.log(results); // results contains rows returned by server
   } catch (err) {
     console.log(err);
   }
+};
+
+exports.getUsers = async (event) => {
+  // Get the client
+  // Create the connection to database
+  const connection = await mysql.createConnection(dbConfig);
+
+  const [users, fields] = await connection.query(`SELECT * FROM Employees;`);
 
   return {
     statusCode: 200,
     body: JSON.stringify({
-      message: "Go Serverless v4! Your function executed successfully!",
-      users: users,
+      users,
     }),
   };
+};
+
+exports.getUserById = async (event, context) => {
+  context.callbackWaitsForEmptyEventLoop = false;
+  try {
+    const connection = await mysql.createConnection(dbConfig);
+    const params = event.pathParameters;
+
+    const user = await connection.query(
+      `SELECT * FROM Employees WHERE EmployeeID=${params.id};`
+    );
+
+    return {
+      statusCode: 200,
+      body: JSON.stringify(user[0]),
+    };
+  } catch (err) {
+    console.log(err);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({
+        error: err,
+      }),
+    };
+  }
 };
 
 exports.bye = async (event) => {

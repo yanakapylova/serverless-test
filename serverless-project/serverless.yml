@@ -13,11 +13,25 @@ plugins:
   - serverless-offline
 
 functions:
-  hello:
-    handler: handler.hello
+  createTable:
+    handler: handler.createTable
     events:
       - httpApi:
-          path: /
+          path: /create
+          method: post
+
+  getUsers:
+    handler: handler.getUsers
+    events:
+      - httpApi:
+          path: /users
+          method: get
+
+  getUserById:
+    handler: handler.getUserById
+    events:
+      - httpApi:
+          path: /users/{id}
           method: get
 
   bye:
