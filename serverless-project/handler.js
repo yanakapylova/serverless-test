@@ -2,16 +2,16 @@
 const mysql = require("serverless-mysql")({
   config: {
 
-    // host: "localhost",
-    // database: "mydatabase",
-    // user: "yana",
-    // password: "qwerty",
+    host: "localhost",
+    database: "mydatabase",
+    user: "yana",
+    password: "qwerty",
 
-    host: "junction.proxy.rlwy.net",
-    // user: "root",
-    password: "cHqxRsKaZxDscAKVHlnTQMKjbAAJqQHr",
-    database: "railway",
-    port: 59391,
+    // host: "junction.proxy.rlwy.net",
+    // // user: "root",
+    // password: "cHqxRsKaZxDscAKVHlnTQMKjbAAJqQHr",
+    // database: "railway",
+    // port: 59391,
   },
 });
 // Main handler function
