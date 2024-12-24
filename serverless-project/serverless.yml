@@ -1,0 +1,42 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: yanaaaa
+# "app" enables Serverless Framework Dashboard features and sharing them with other Services.
+app: serverless-yana-test
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: serverless-project
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+
+plugins:
+  - serverless-offline
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - httpApi:
+          path: /
+          method: get
+
+  bye:
+    handler: handler.bye
+    events:
+      - httpApi:
+          path: /bye
+          method: get
+
+  db:
+    handler: handler.db
+    events:
+      - httpApi:
+          path: /db
+          method: get
+
+  create_db:
+    handler: handler.create_db
+    events:
+      - httpApi:
+          path: /create_db
+          method: get

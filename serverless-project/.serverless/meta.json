@@ -1,0 +1,260 @@
+{
+  "/home/user/Documents/serverless-test-project/serverless-project": {
+    "versionSfCore": null,
+    "versionFramework": "4.4.18",
+    "isWithinCompose": false,
+    "isCompose": false,
+    "composeOrgName": null,
+    "composeResolverProviders": {
+      "default-aws-credential-resolver": "<REDACTED>",
+      "sls": {
+        "instance": {
+          "credentials": "<REDACTED>",
+          "serviceConfigFile": {
+            "org": "yanaaaa",
+            "app": "serverless-yana-test",
+            "service": "serverless-project",
+            "provider": {
+              "name": "aws",
+              "runtime": "nodejs20.x",
+              "stage": "dev",
+              "region": "us-east-1",
+              "versionFunctions": true
+            },
+            "plugins": [
+              "serverless-offline"
+            ],
+            "functions": {
+              "hello": {
+                "handler": "handler.hello",
+                "events": [
+                  {
+                    "httpApi": {
+                      "path": "/",
+                      "method": "get"
+                    }
+                  }
+                ]
+              },
+              "bye": {
+                "handler": "handler.bye",
+                "events": [
+                  {
+                    "httpApi": {
+                      "path": "/bye",
+                      "method": "get"
+                    }
+                  }
+                ]
+              },
+              "db": {
+                "handler": "handler.db",
+                "events": [
+                  {
+                    "httpApi": {
+                      "path": "/db",
+                      "method": "get"
+                    }
+                  }
+                ]
+              },
+              "create_db": {
+                "handler": "handler.create_db",
+                "events": [
+                  {
+                    "httpApi": {
+                      "path": "/create_db",
+                      "method": "get"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "configFileDirPath": "/home/user/Documents/serverless-test-project/serverless-project",
+          "config": {
+            "type": "sls"
+          },
+          "options": {},
+          "stage": "dev",
+          "dashboard": {
+            "aws": {
+              "accessKeyId": "<REDACTED>",
+              "secretAccessKey": "<REDACTED>",
+              "sessionToken": "<REDACTED>",
+              "$source": {
+                "CREDENTIALS_CODE": "<REDACTED>"
+              }
+            },
+            "params": null,
+            "accessKey": "<REDACTED>"
+          },
+          "logger": {
+            "namespace": "s:core:resolver:sls",
+            "prefix": null,
+            "prefixColor": null
+          },
+          "_credentialsPromise": "<REDACTED>"
+        },
+        "resolvers": {}
+      }
+    },
+    "composeServiceName": null,
+    "servicePath": "/home/user/Documents/serverless-test-project/serverless-project",
+    "serviceConfigFileName": "serverless.yml",
+    "service": {
+      "org": "yanaaaa",
+      "app": "serverless-yana-test",
+      "service": "serverless-project",
+      "provider": {
+        "name": "aws",
+        "runtime": "nodejs20.x",
+        "stage": "dev",
+        "region": "us-east-1",
+        "versionFunctions": true
+      },
+      "plugins": [
+        "serverless-offline"
+      ],
+      "functions": {
+        "hello": {
+          "handler": "handler.hello",
+          "events": [
+            {
+              "httpApi": {
+                "path": "/",
+                "method": "get"
+              }
+            }
+          ]
+        },
+        "bye": {
+          "handler": "handler.bye",
+          "events": [
+            {
+              "httpApi": {
+                "path": "/bye",
+                "method": "get"
+              }
+            }
+          ]
+        },
+        "db": {
+          "handler": "handler.db",
+          "events": [
+            {
+              "httpApi": {
+                "path": "/db",
+                "method": "get"
+              }
+            }
+          ]
+        },
+        "create_db": {
+          "handler": "handler.create_db",
+          "events": [
+            {
+              "httpApi": {
+                "path": "/create_db",
+                "method": "get"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "serviceRawFile": "# \"org\" ensures this Service is used with the correct Serverless Framework Access Key.\norg: yanaaaa\n# \"app\" enables Serverless Framework Dashboard features and sharing them with other Services.\napp: serverless-yana-test\n# \"service\" is the name of this project. This will also be added to your AWS resource names.\nservice: serverless-project\n\nprovider:\n  name: aws\n  runtime: nodejs20.x\n\nplugins:\n  - serverless-offline\n\nfunctions:\n  hello:\n    handler: handler.hello\n    events:\n      - httpApi:\n          path: /\n          method: get\n\n  bye:\n    handler: handler.bye\n    events:\n      - httpApi:\n          path: /bye\n          method: get\n\n  db:\n    handler: handler.db\n    events:\n      - httpApi:\n          path: /db\n          method: get\n\n  create_db:\n    handler: handler.create_db\n    events:\n      - httpApi:\n          path: /create_db\n          method: get\n",
+    "command": [
+      "offline"
+    ],
+    "options": {},
+    "error": {
+      "message": "Serverless plugin \"serverless-offline\" not found. Make sure it's installed and listed in the \"plugins\" section of your serverless config file. Use the --debug flag to learn more.",
+      "stack": "ServerlessError2: Serverless plugin \"serverless-offline\" not found. Make sure it's installed and listed in the \"plugins\" section of your serverless config file. Use the --debug flag to learn more.\n    at PluginManager.resolveServicePlugins (file:///home/user/.serverless/releases/4.4.18/package/dist/sf-core.js:925:2671)\n    at async PluginManager.loadAllPlugins (file:///home/user/.serverless/releases/4.4.18/package/dist/sf-core.js:925:1293)\n    at async Serverless.init (file:///home/user/.serverless/releases/4.4.18/package/dist/sf-core.js:932:9985)\n    at async runFramework (file:///home/user/.serverless/releases/4.4.18/package/dist/sf-core.js:980:1336)\n    at async route (file:///home/user/.serverless/releases/4.4.18/package/dist/sf-core.js:1010:14772)\n    at async Object.run2 [as run] (file:///home/user/.serverless/releases/4.4.18/package/dist/sf-core.js:1010:15173)\n    at async run3 (file:///home/user/.serverless/releases/4.4.18/package/dist/sf-core.js:1010:16435)",
+      "code": "PLUGIN_NOT_FOUND"
+    },
+    "params": {},
+    "machineId": "7d824e51f899c687e073a6c4bf82f6ce",
+    "stage": "dev",
+    "accessKeyV2": "<REDACTED>",
+    "accessKeyV1": "<REDACTED>",
+    "orgId": "8ef0a227-eaf1-4e10-a86b-66c144af5feb",
+    "orgName": "yanaaaa",
+    "userId": "lppdw3XX1qSJ6VjYbS",
+    "dashboard": {
+      "isEnabledForService": true,
+      "requiredAuthentication": false,
+      "orgFeaturesInUse": {
+        "providers": true,
+        "monitoring": false
+      },
+      "orgObservabilityIntegrations": null,
+      "serviceAppId": "dPxwGFy63pz8NTsJjN",
+      "serviceProvider": {
+        "accessKeyId": "<REDACTED>",
+        "secretAccessKey": "<REDACTED>",
+        "sessionToken": "<REDACTED>",
+        "$source": {
+          "CREDENTIALS_CODE": "<REDACTED>"
+        }
+      },
+      "instanceParameters": null
+    },
+    "userName": "yanaaaa",
+    "subscription": null,
+    "userEmail": "yana261099@gmail.com",
+    "serviceProviderAwsRegion": "us-east-1",
+    "serviceProviderAwsCredentials": "<REDACTED>",
+    "serviceProviderAwsAccountId": "820242939176",
+    "projectType": "traditional",
+    "versionSf": "4.4.18",
+    "serviceUniqueId": "arn:aws:cloudformation:us-east-1:820242939176:stack/serverless-project-dev/96526940-be27-11ef-a29a-1246f903e353",
+    "serviceProviderAwsCfStackId": "arn:aws:cloudformation:us-east-1:820242939176:stack/serverless-project-dev/96526940-be27-11ef-a29a-1246f903e353",
+    "serviceProviderAwsCfStackCreated": "2024-12-19T16:37:50.809Z",
+    "serviceProviderAwsCfStackUpdated": null,
+    "serviceProviderAwsCfStackStatus": "CREATE_COMPLETE",
+    "serviceProviderAwsCfStackOutputs": [
+      {
+        "OutputKey": "HelloLambdaFunctionQualifiedArn",
+        "OutputValue": "arn:aws:lambda:us-east-1:820242939176:function:serverless-project-dev-hello:1",
+        "Description": "Current Lambda function version",
+        "ExportName": "sls-serverless-project-dev-HelloLambdaFunctionQualifiedArn"
+      },
+      {
+        "OutputKey": "HttpApiId",
+        "OutputValue": "jwp3a0x3t8",
+        "Description": "Id of the HTTP API",
+        "ExportName": "sls-serverless-project-dev-HttpApiId"
+      },
+      {
+        "OutputKey": "ServerlessDeploymentBucketName",
+        "OutputValue": "serverless-framework-deployments-us-east-1-c62b2a43-4570",
+        "ExportName": "sls-serverless-project-dev-ServerlessDeploymentBucketName"
+      },
+      {
+        "OutputKey": "HttpApiUrl",
+        "OutputValue": "https://jwp3a0x3t8.execute-api.us-east-1.amazonaws.com",
+        "Description": "URL of the HTTP API",
+        "ExportName": "sls-serverless-project-dev-HttpApiUrl"
+      }
+    ]
+  },
+  "unknown": {
+    "versionSfCore": null,
+    "versionFramework": "4.4.18",
+    "isWithinCompose": false,
+    "composeOrgName": null,
+    "composeServiceName": null,
+    "command": [],
+    "options": {
+      "verbose": true
+    },
+    "error": null,
+    "machineId": "7d824e51f899c687e073a6c4bf82f6ce",
+    "serviceProviderAwsCfStackId": null,
+    "serviceProviderAwsCfStackCreated": null,
+    "serviceProviderAwsCfStackUpdated": null,
+    "serviceProviderAwsCfStackStatus": null,
+    "serviceProviderAwsCfStackOutputs": null
+  }
+}
