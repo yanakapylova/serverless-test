@@ -26,17 +26,3 @@ functions:
       - httpApi:
           path: /bye
           method: get
-
-  db:
-    handler: handler.db
-    events:
-      - httpApi:
-          path: /db
-          method: get
-
-  create_db:
-    handler: handler.create_db
-    events:
-      - httpApi:
-          path: /create_db
-          method: get

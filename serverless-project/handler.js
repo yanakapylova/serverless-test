@@ -1,60 +1,42 @@
-// Require and initialize outside of your main handler
-const mysql = require("serverless-mysql")({
-  config: {
+const mysql = require("mysql2/promise");
+exports.hello = async (event) => {
+  // Get the client
 
+  // Create the connection to database
+  const connection = await mysql.createConnection({
     host: "localhost",
     database: "mydatabase",
     user: "yana",
     password: "qwerty",
+  });
 
-    // host: "junction.proxy.rlwy.net",
-    // // user: "root",
-    // password: "cHqxRsKaZxDscAKVHlnTQMKjbAAJqQHr",
-    // database: "railway",
-    // port: 59391,
-  },
-});
-// Main handler function
-exports.db = async (event, context) => {
-  // Run your query
-  let results = await mysql.query("SELECT * FROM table");
-  // Run clean up function
-  await mysql.end();
-  // Return the results
-  return results;
-};
+  // A simple SELECT query''
+  let users;
+  try {
+    await connection.query(`DROP TABLE IF EXISTS Employees;`);
+    await connection.query(
+      `CREATE TABLE Employees (EmployeeID INT PRIMARY KEY AUTO_INCREMENT, FirstName VARCHAR(50), LastName VARCHAR(50), Position VARCHAR(50));`
+    );
+    await connection.query(
+      `INSERT INTO Employees (FirstName, LastName, Position)
+      VALUES ('John', 'Doe', 'Software Engineer'), ('Jane', 'Smith', 'Product Manager');`
+    );
+    const [results, fields] = await connection.query(
+      `SELECT * FROM Employees;`
+    );
 
-let createDBCode = `-- Создание таблицы
-CREATE TABLE Employees (
-    EmployeeID INT PRIMARY KEY AUTO_INCREMENT,
-    FirstName VARCHAR(50),
-    LastName VARCHAR(50),
-    Position VARCHAR(50),
-    Salary DECIMAL(10, 2)
-);
+    users = results;
+    // console.log(results); // results contains rows returned by server
+    // console.log(fields); // fields contains extra meta data about results, if available
+  } catch (err) {
+    console.log(err);
+  }
 
--- Вставка данных
-INSERT INTO Employees (FirstName, LastName, Position, Salary)
-VALUES 
-('John', 'Doe', 'Software Engineer', 75000.00),
-('Jane', 'Smith', 'Product Manager', 85000.00);
-
--- Проверка вставленных данных
-SELECT * FROM Employees;
-`;
-
-exports.create_db = async (event, context) => {
-  // Run your query
-  await mysql.query(createDBCode);
-  // Run clean up function
-  await mysql.end();
-};
-
-exports.hello = async (event) => {
   return {
     statusCode: 200,
     body: JSON.stringify({
       message: "Go Serverless v4! Your function executed successfully!",
+      users: users,
     }),
   };
 };
