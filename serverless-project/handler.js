@@ -1,10 +1,6 @@
 // Require and initialize outside of your main handler
 const mysql = require("serverless-mysql")({
   config: {
-    // host     : process.env.ENDPOINT,
-    // database : process.env.DATABASE,
-    // user     : process.env.USERNAME,
-    // password : process.env.PASSWORD
 
     // host: "localhost",
     // database: "mydatabase",
