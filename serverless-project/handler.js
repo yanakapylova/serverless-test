@@ -1,4 +1,8 @@
-const mysql = require("mysql2/promise");
+import mysql from "mysql2/promise";
+import { sayHello } from '@yanakapylova/npm-package-test';
+
+// import pkg from "@yanakapylova/npm-package-test";
+// const sayHello = pkg.sayHello; // Вытягиваем конкретную функцию
 
 const dbConfig = {
   host: "localhost",
@@ -7,7 +11,7 @@ const dbConfig = {
   password: "qwerty",
 };
 
-exports.createTable = async (event) => {
+export const createTable = async (event) => {
   const connection = await mysql.createConnection(dbConfig);
 
   try {
@@ -20,13 +24,16 @@ exports.createTable = async (event) => {
       VALUES ('John', 'Doe', 'Software Engineer'), ('Jane', 'Smith', 'Product Manager');`
     );
 
-    console.log(results); // results contains rows returned by server
+    return {
+      statusCode: 200,
+      body: "table has been created successfully",
+    };
   } catch (err) {
     console.log(err);
   }
 };
 
-exports.getUsers = async (event) => {
+export const getUsers = async (event) => {
   // Get the client
   // Create the connection to database
   const connection = await mysql.createConnection(dbConfig);
@@ -41,7 +48,7 @@ exports.getUsers = async (event) => {
   };
 };
 
-exports.getUserById = async (event, context) => {
+export const getUserById = async (event, context) => {
   context.callbackWaitsForEmptyEventLoop = false;
   try {
     const connection = await mysql.createConnection(dbConfig);
@@ -50,6 +57,8 @@ exports.getUserById = async (event, context) => {
     const user = await connection.query(
       `SELECT * FROM Employees WHERE EmployeeID=${params.id};`
     );
+
+    sayHello("name");
 
     return {
       statusCode: 200,
@@ -66,7 +75,7 @@ exports.getUserById = async (event, context) => {
   }
 };
 
-exports.bye = async (event) => {
+export const bye = async (event) => {
   return {
     statusCode: 200,
     body: JSON.stringify({
